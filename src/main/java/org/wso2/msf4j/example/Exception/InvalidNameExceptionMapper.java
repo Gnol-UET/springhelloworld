@@ -13,19 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.wso2.msf4j.example.exception;
 
-package org.wso2.msf4j.example;
+import org.springframework.stereotype.Component;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.wso2.msf4j.spring.transport.HTTPTransportConfig;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
 
-@Configuration
-public class TransportConfiguration {
-
-    @Bean
-    public HTTPTransportConfig http() {
-        return new HTTPTransportConfig(9090);
+/**
+ * MSF4J ExceptionMapper for InvalidNameExceptionMapper  exception.
+ */
+@Component
+public class InvalidNameExceptionMapper implements ExceptionMapper<InvalidNameException> {
+    @Override
+    public Response toResponse(InvalidNameException exception) {
+        return Response.status(500).
+                entity(exception.getMessage()).
+                type("text/plain").
+                build();
     }
-
 }

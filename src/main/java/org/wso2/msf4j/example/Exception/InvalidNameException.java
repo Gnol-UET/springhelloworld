@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wso2.msf4j.example;
+package org.wso2.msf4j.example.exception;
 
 /**
  * InvalidNameException class to demonstrate ExceptionMapper feature .

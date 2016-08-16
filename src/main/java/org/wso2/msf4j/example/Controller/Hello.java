@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-package org.wso2.msf4j.example;
+package org.wso2.msf4j.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.wso2.msf4j.example.exception.InvalidNameException;
+import org.wso2.msf4j.example.service.HelloService;
+import org.wso2.msf4j.example.model.User;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Response;
 
 /**
  * MSF4J service class annotated with MSF4J and Spring annotations.
@@ -33,6 +37,15 @@ public class Hello {
     @Autowired
     private HelloService helloService;
 
+    @GET
+    @Path("/id/{id}")
+    public Response getUser(@PathParam("id") long id) {
+        User user = helloService.getUser(id);
+        if (user != null) {
+            return Response.status(Response.Status.ACCEPTED).entity(user).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
     @GET
     @Path("/{name}")
     public String hello(@PathParam("name") String name) throws InvalidNameException {

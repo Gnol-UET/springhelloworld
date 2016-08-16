@@ -13,23 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.wso2.msf4j.example;
 
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.wso2.msf4j.example.repository.UserRepository;
+import org.wso2.msf4j.spring.transport.HTTPTransportConfig;
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
+import javax.persistence.Persistence;
 
-/**
- * MSF4J ExceptionMapper for InvalidNameExceptionMapper  Exception.
- */
-@Component
-public class InvalidNameExceptionMapper implements ExceptionMapper<InvalidNameException> {
-    @Override
-    public Response toResponse(InvalidNameException exception) {
-        return Response.status(500).
-                entity(exception.getMessage()).
-                type("text/plain").
-                build();
+@Configuration
+public class Config {
+
+    @Bean
+    public HTTPTransportConfig http() {
+        return new HTTPTransportConfig(9090);
+    }
+
+    @Bean
+    public UserRepository userRepository() {
+        UserRepository userRepository = new UserRepository(Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa"));
+        return userRepository;
     }
 }

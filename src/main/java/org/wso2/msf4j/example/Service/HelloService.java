@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
-package org.wso2.msf4j.example;
+package org.wso2.msf4j.example.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.wso2.msf4j.example.exception.InvalidNameException;
+import org.wso2.msf4j.example.repository.UserRepository;
+import org.wso2.msf4j.example.model.User;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,7 +31,7 @@ import java.util.regex.Pattern;
 @Component
 public class HelloService {
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     public String hello(String name) throws InvalidNameException {
         if (isNumericValue(name)) {
@@ -41,5 +44,10 @@ public class HelloService {
         Pattern pattern = Pattern.compile("^(0|[1-9][0-9]*)$");
         Matcher matcher = pattern.matcher(value);
         return matcher.matches();
+    }
+
+    public User getUser(long id) {
+        User user = userRepository.findUser(id);
+        return user;
     }
 }
