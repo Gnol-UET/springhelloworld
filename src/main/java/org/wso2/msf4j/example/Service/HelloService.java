@@ -25,6 +25,8 @@ import org.wso2.msf4j.example.model.User;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Thread.sleep;
+
 /**
  * HelloService class to be injected to Hello resource through Spring
  */
@@ -49,5 +51,9 @@ public class HelloService {
     public User getUser(long id) {
         User user = userRepository.findUser(id);
         return user;
+    }
+
+    public void sleepplease(int time) throws InterruptedException {
+        sleep(time);
     }
 }

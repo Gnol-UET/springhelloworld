@@ -17,3 +17,5 @@ gradle-app.setting
 .idea
 target
 *.iml
+disk 5k 1k
+disk 50k 10k
