@@ -23,6 +23,7 @@ import org.springframework.util.StringUtils;
 import org.wso2.msf4j.example.exception.InvalidNameException;
 import org.wso2.msf4j.example.service.HelloService;
 import org.wso2.msf4j.example.model.User;
+import org.wso2.msf4j.example.service.RSAService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -31,6 +32,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,6 +45,15 @@ public class Hello {
 
     @Autowired
     private HelloService helloService;
+
+    @Autowired
+    private RSAService rsaService;
+
+    @GET
+    @Path("/rsa/5000/512")
+    public void RSA512() throws GeneralSecurityException {
+        rsaService.RSAcrypto();
+    }
 
     @GET
     @Path("/ram/5000/1024")
