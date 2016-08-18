@@ -18,6 +18,7 @@ package org.wso2.msf4j.example;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.wso2.msf4j.example.repository.PersonRepository;
 import org.wso2.msf4j.example.repository.UserRepository;
 import org.wso2.msf4j.spring.transport.HTTPTransportConfig;
 
@@ -35,5 +36,10 @@ public class Config {
     public UserRepository userRepository() {
         UserRepository userRepository = new UserRepository(Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa"));
         return userRepository;
+    }
+    @Bean
+    public PersonRepository personRepository() {
+        PersonRepository personRepository = new PersonRepository(Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa"));
+        return personRepository;
     }
 }

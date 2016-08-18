@@ -46,52 +46,12 @@ public class Hello {
     @Autowired
     private HelloService helloService;
 
-    @Autowired
-    private RSAService rsaService;
-
-    @GET
-    @Path("/rsa/5000/512")
-    public void RSA512() throws GeneralSecurityException {
-        rsaService.RSAcrypto();
-    }
-
-    @GET
-    @Path("/ram/5000/1024")
-    public String randomString5k1k(){
-        for (int i =0; i< 5000;i++)
-            RandomStringUtils.randomAlphanumeric(1024);
-        return "OK";
-    }
 
 
-    @GET
-    @Path("/disk/5000/1024")
-    public void disk5k1k(){
-        for (int i = 0; i < 5000; i++) {
-            List<String> lines = Arrays.asList(RandomStringUtils.randomAlphanumeric(1024), "The second line");
-            java.nio.file.Path file = Paths.get("disk 5k 1k/5k1k " +i +".txt");
-            try {
-                Files.write(file, lines, Charset.forName("UTF-8"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
-    }
-    @GET
-    @Path("/disk/50000/10240")
-    public void disk50k10k(){
-        for (int i = 0; i < 50000; i++) {
-            List<String> lines = Arrays.asList(RandomStringUtils.randomAlphanumeric(10240), "The second line");
-            java.nio.file.Path file = Paths.get("disk 50k 10k/50k10k " +i +".txt");
-            try {
-                Files.write(file, lines, Charset.forName("UTF-8"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
-    }
+
+
 
     @GET
     @Path("/sleep/{time}")
