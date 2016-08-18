@@ -5,6 +5,9 @@ import org.wso2.msf4j.example.model.RSACipher;
 import org.wso2.msf4j.example.model.RSAKeyPair;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
 
 /**
@@ -12,14 +15,21 @@ import java.security.GeneralSecurityException;
  */
 @Component
 public class RSAService {
-    final static String privateKeyPathName = "C://Users/Longlaptop/Desktop/private.key";
-    final static String publicKeyPathName = "C://Users/Longlaptop/Desktop/public.key";
     final static String transformation = "RSA/ECB/PKCS1PADDING";
     final static String encoding = "UTF-8";
-    public String RSAcrypto() throws GeneralSecurityException {
+
+    public String RSAcrypto(int RSALength, boolean keyexist) throws GeneralSecurityException {
         try{
-            RSAKeyPair rsaKeyPair = new RSAKeyPair(512);
-            rsaKeyPair.toFileSystem(privateKeyPathName, publicKeyPathName);
+            String privateKeyPathName = "C://Users/Longlaptop/Desktop/private" + RSALength + ".key";
+            String publicKeyPathName = "C://Users/Longlaptop/Desktop/public" + RSALength + ".key";
+            if (keyexist == true) {
+                if (Files.exists(Paths.get(privateKeyPathName)) == false
+                        || Files.exists(Paths.get(publicKeyPathName)) == false) {
+                    RSAKeyPair rsaKeyPair = new RSAKeyPair(RSALength);
+                    rsaKeyPair.toFileSystem(privateKeyPathName, publicKeyPathName);
+                }
+            }
+
             RSACipher rsaCipher = new RSACipher();
 
             String encryptedString = rsaCipher.encrypt("Hello RSA", publicKeyPathName, transformation, encoding);
