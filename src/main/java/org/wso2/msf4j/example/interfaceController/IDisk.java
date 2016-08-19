@@ -1,4 +1,4 @@
-package org.wso2.msf4j.example.iController;
+package org.wso2.msf4j.example.interfaceController;
 
 /**
  * Created by Longlaptop on 8/19/2016.

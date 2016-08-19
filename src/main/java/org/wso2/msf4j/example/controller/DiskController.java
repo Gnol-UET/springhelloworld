@@ -2,12 +2,13 @@ package org.wso2.msf4j.example.controller;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
-import org.wso2.msf4j.example.iController.IDisk;
+import org.wso2.msf4j.example.interfaceController.IDisk;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import java.io.IOException;
 import java.nio.charset.Charset;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -19,6 +20,7 @@ import java.util.List;
 @Component
 @Path("/disk")
 public class DiskController implements IDisk {
+    //Implement InterfaceController
     @GET
     @Path("/5000/1024")
     public String disk5k1k() {

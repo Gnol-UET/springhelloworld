@@ -3,6 +3,7 @@ package org.wso2.msf4j.example.controller;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.wso2.msf4j.example.interfaceController.IRam;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,8 +14,8 @@ import javax.ws.rs.Path;
  */
 @Component
 @Path("/ram")
-public class RamController {
-
+public class RamController implements IRam {
+    //Implement InterfaceController
     @GET
     @Path("/5000/1024")
     public String randomString5k1k() {
