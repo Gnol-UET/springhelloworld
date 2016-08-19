@@ -16,14 +16,18 @@
 
 package org.wso2.msf4j.example;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.wso2.msf4j.example.repository.PersonRepository;
 import org.wso2.msf4j.example.repository.UserRepository;
+
 import org.wso2.msf4j.spring.transport.HTTPTransportConfig;
 
 import javax.persistence.Persistence;
-
 @Configuration
 public class Config {
 
@@ -42,4 +46,6 @@ public class Config {
         PersonRepository personRepository = new PersonRepository(Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa"));
         return personRepository;
     }
+
+
 }
