@@ -3,6 +3,8 @@ package org.wso2.msf4j.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.wso2.msf4j.example.interfaceController.IDisk;
+import org.wso2.msf4j.example.interfaceController.IPerson;
 import org.wso2.msf4j.example.model.DTO.PersonDTO;
 import org.wso2.msf4j.example.service.PersonService;
 
@@ -17,7 +19,7 @@ import java.util.List;
 
 @Component
 @Path("/db")
-public class PersonController {
+public class PersonController implements IPerson {
 
     @Autowired
     private PersonService personService;

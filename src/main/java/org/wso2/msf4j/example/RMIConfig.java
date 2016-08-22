@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 import org.springframework.stereotype.Component;
 import org.wso2.msf4j.example.interfaceController.IDisk;
+import org.wso2.msf4j.example.interfaceController.INetio;
+import org.wso2.msf4j.example.interfaceController.IPerson;
 import org.wso2.msf4j.example.interfaceController.IRam;
 
 /**
@@ -22,24 +24,52 @@ public class RMIConfig {
     @Autowired
     IDisk iDisk;
 
+    @Autowired
+    IPerson iPerson;
+
+    @Autowired
+    INetio iNetio;
+
     @Bean
-    public RmiServiceExporter diskCall(IDisk iDisk) {
+    public RmiServiceExporter disk5kCall(IDisk iDisk) {
         RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
         rmiServiceExporter.setService(iDisk);
-        rmiServiceExporter.setServiceName("disk5k1k"); //Client gọi qua ServiceName
+        rmiServiceExporter.setServiceName("RMIDisk"); //Client gọi qua ServiceName
         rmiServiceExporter.setServiceInterface(IDisk.class);
         rmiServiceExporter.setRegistryPort(PORT);
         return rmiServiceExporter;
     }
 
     @Bean
-    public RmiServiceExporter ramCall(IRam iRam) {
+    public RmiServiceExporter ram5kCall(IRam iRam) {
         RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
         rmiServiceExporter.setRegistryPort(PORT);
         rmiServiceExporter.setService(iRam);
-        rmiServiceExporter.setServiceName("ram5k1k");
+        rmiServiceExporter.setServiceName("RMIRam");
         rmiServiceExporter.setServiceInterface(IRam.class);
         return rmiServiceExporter;
     }
+
+    @Bean
+    public RmiServiceExporter person(IPerson iPerson) {
+        RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
+        rmiServiceExporter.setRegistryPort(PORT);
+        rmiServiceExporter.setService(iPerson);
+        rmiServiceExporter.setServiceName("RMIPerson");
+        rmiServiceExporter.setServiceInterface(IPerson.class);
+        return rmiServiceExporter;
+    }
+
+    @Bean
+    public RmiServiceExporter netio(INetio iNetio) {
+        RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
+        rmiServiceExporter.setRegistryPort(PORT);
+        rmiServiceExporter.setService(iNetio);
+        rmiServiceExporter.setServiceName("RMINetio");
+        rmiServiceExporter.setServiceInterface(INetio.class);
+        return rmiServiceExporter;
+    }
+
+
 
 }

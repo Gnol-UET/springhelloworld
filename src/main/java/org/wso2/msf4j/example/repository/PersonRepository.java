@@ -24,8 +24,8 @@ public class PersonRepository extends AbstractRepository {
         remove(person);
     }
 
-    public User findPerson(long id) {
-        return find(id);
+    public Person findPerson(long id) {
+        return findPersonById(id);
     }
 
     public List<Person> findUsers() {

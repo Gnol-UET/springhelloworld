@@ -8,6 +8,7 @@ import java.util.Date;
  * Created by MinhTu on 8/16/2016.
  */
 @Entity
+@Table(name = "student")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

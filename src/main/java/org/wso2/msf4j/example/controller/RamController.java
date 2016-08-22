@@ -7,6 +7,7 @@ import org.wso2.msf4j.example.interfaceController.IRam;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 
 /**
@@ -16,20 +17,13 @@ import javax.ws.rs.Path;
 @Path("/ram")
 public class RamController implements IRam {
     //Implement InterfaceController
-    @GET
-    @Path("/5000/1024")
-    public String randomString5k1k() {
-        for (int i = 0; i < 5000; i++)
-            RandomStringUtils.randomAlphanumeric(1024);
-        return "OK Ram 5000 - 1024";
-    }
 
     @GET
-    @Path("/50000/10240")
-    public String randomString50k10k() {
-        for (int i = 0; i < 50000; i++)
-            RandomStringUtils.randomAlphanumeric(10240);
-        return "OK Ram 50000 - 10240";
+    @Path("/{amount}/{length}")
+    public String randomString5k1k(@PathParam("amount") int amount, @PathParam("length") int length) {
+        for (int i = 0; i < amount; i++)
+            RandomStringUtils.randomAlphanumeric(length);
+        return "OK Ram" + amount + "with " + length;
     }
 
 

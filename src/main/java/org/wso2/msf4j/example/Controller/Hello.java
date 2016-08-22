@@ -46,13 +46,6 @@ public class Hello {
     @Autowired
     private HelloService helloService;
 
-
-
-
-
-
-
-
     @GET
     @Path("/sleep/{time}")
     public String sleepplease(@PathParam("time") int time) throws InterruptedException {
