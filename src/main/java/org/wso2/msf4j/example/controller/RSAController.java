@@ -2,6 +2,7 @@ package org.wso2.msf4j.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.wso2.msf4j.example.interfaceController.IRsa;
 import org.wso2.msf4j.example.service.RSAService;
 
 import javax.ws.rs.GET;
@@ -13,7 +14,7 @@ import java.security.GeneralSecurityException;
  */
 @Component
 @Path("/rsa")
-public class RSAController {
+public class RSAController implements IRsa {
 
     @Autowired
     private RSAService rsaService;

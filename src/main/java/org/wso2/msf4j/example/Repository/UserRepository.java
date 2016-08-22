@@ -43,7 +43,7 @@ public class UserRepository extends AbstractRepository<User> {
     }
 
     public User findUser(long id) {
-        return find(id);
+        return findUserById(id);
     }
 
     public List<User> findUsers() {

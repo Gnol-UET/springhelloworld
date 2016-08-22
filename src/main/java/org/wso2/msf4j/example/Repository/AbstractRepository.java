@@ -19,6 +19,8 @@
 package org.wso2.msf4j.example.repository;
 
 
+import org.wso2.msf4j.example.model.Person;
+import org.wso2.msf4j.example.model.Student;
 import org.wso2.msf4j.example.model.User;
 
 import javax.persistence.EntityManager;
@@ -64,8 +66,16 @@ public abstract class AbstractRepository<T> {
         manager.close();
     }
 
-    protected User find(long id) {
+    protected User findUserById(long id) {
         return getEntityManager().find(User.class, id);
+    }
+
+    protected Person findPersonById(long id) {
+        return getEntityManager().find(Person.class, id);
+    }
+
+    protected Student findStudentById(long id) {
+        return getEntityManager().find(Student.class, id);
     }
 
     protected List<T> findAll(Class<T> clazz) {

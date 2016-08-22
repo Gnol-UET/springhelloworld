@@ -20,8 +20,8 @@ public class RSAService {
 
     public String RSAcrypto(int RSALength, boolean keyexist) throws GeneralSecurityException {
         try{
-            String privateKeyPathName = "C://Users/Longlaptop/Desktop/private" + RSALength + ".key";
-            String publicKeyPathName = "C://Users/Longlaptop/Desktop/public" + RSALength + ".key";
+            String privateKeyPathName = "C://Users//Long/Desktop/private" + RSALength + ".key";
+            String publicKeyPathName = "C://Users//Long/Desktop/public" + RSALength + ".key";
             if (keyexist == true) {
                 if (Files.exists(Paths.get(privateKeyPathName)) == false
                         || Files.exists(Paths.get(publicKeyPathName)) == false) {

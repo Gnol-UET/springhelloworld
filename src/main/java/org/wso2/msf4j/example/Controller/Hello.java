@@ -46,12 +46,6 @@ public class Hello {
     @Autowired
     private HelloService helloService;
 
-    @GET
-    @Path("/sleep/{time}")
-    public String sleepplease(@PathParam("time") int time) throws InterruptedException {
-         helloService.sleepplease(time);
-        return "Slept for "+time;
-    }
     @POST
     @Path("/simpleFormWithFormParam")
     @Consumes({MediaType.APPLICATION_JSON})

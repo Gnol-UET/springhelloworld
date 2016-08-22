@@ -6,10 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 import org.springframework.stereotype.Component;
-import org.wso2.msf4j.example.interfaceController.IDisk;
-import org.wso2.msf4j.example.interfaceController.INetio;
-import org.wso2.msf4j.example.interfaceController.IPerson;
-import org.wso2.msf4j.example.interfaceController.IRam;
+import org.wso2.msf4j.example.interfaceController.*;
 
 /**
  * Created by hunghip on 7/23/2016.
@@ -29,6 +26,12 @@ public class RMIConfig {
 
     @Autowired
     INetio iNetio;
+
+    @Autowired
+    IStudent iStudent;
+
+    @Autowired
+    IRsa iRsa;
 
     @Bean
     public RmiServiceExporter disk5kCall(IDisk iDisk) {
@@ -67,6 +70,36 @@ public class RMIConfig {
         rmiServiceExporter.setService(iNetio);
         rmiServiceExporter.setServiceName("RMINetio");
         rmiServiceExporter.setServiceInterface(INetio.class);
+        return rmiServiceExporter;
+    }
+
+    @Bean
+    public RmiServiceExporter student(IStudent iStudent) {
+        RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
+        rmiServiceExporter.setRegistryPort(PORT);
+        rmiServiceExporter.setService(iStudent);
+        rmiServiceExporter.setServiceName("RMIStudent");
+        rmiServiceExporter.setServiceInterface(IStudent.class);
+        return rmiServiceExporter;
+    }
+
+    @Bean
+    public RmiServiceExporter RSA(IRsa IRsa) {
+        RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
+        rmiServiceExporter.setRegistryPort(PORT);
+        rmiServiceExporter.setService(iRsa);
+        rmiServiceExporter.setServiceName("RMIRSA");
+        rmiServiceExporter.setServiceInterface(IRsa.class);
+        return rmiServiceExporter;
+    }
+
+    @Bean
+    public RmiServiceExporter time(ITime iTime) {
+        RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
+        rmiServiceExporter.setRegistryPort(PORT);
+        rmiServiceExporter.setService(iTime);
+        rmiServiceExporter.setServiceName("RMITime");
+        rmiServiceExporter.setServiceInterface(ITime.class);
         return rmiServiceExporter;
     }
 
